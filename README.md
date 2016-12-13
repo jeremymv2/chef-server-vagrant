@@ -4,8 +4,19 @@ Test chef-server via vagrant / virtualbox
 # Prerequisites
  * Vagrant
  * Virtualbox
+ * put your Automate license into `test-chef-server/delivery.license`
+ * add entries into your `hosts` file:
+
+```
+192.168.200.100 chef-server.test
+192.168.200.101 automate-build-node.test
+192.168.200.102 clientnode
+192.168.200.103 automate-server.test
+192.168.200.104 compliance-server.test
+```
 
 # Usage
- * vagrant up chef-server
+ * vagrant status
+ * vagrant up chef-server # bring up chef-server first
  * vagrant up chef-client-node
- * bring up http://192.168.200.100 in your browser (or add an entry in your hosts file for that IP mapped to 'chef.test')
+ * vagrant up ..

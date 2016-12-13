@@ -74,13 +74,16 @@ cp -f /vagrant/delivery.license /var/opt/delivery/license
 mkdir -p /etc/delivery
 chmod 0644 /etc/delivery
 cp -f /vagrant/delivery.pem /etc/delivery/delivery.pem
-cp -f /vagrant/delivery.rb /etc/delivery
+# cp -f /vagrant/delivery.rb /etc/delivery
 # add other hosts to etc/hosts
 echo "192.168.200.100 chef-server.test" | tee -a /etc/hosts
-delivery-ctl setup --license /var/opt/delivery/license/delivery.license --enterprise brewinc --no-build-node --key /etc/delivery/delivery.pem --server-url https://chef-server.test/organizations/brewinc --fqdn automate-server.test --configure
+automate-ctl setup --license /var/opt/delivery/license/delivery.license --enterprise brewinc --no-build-node --key /etc/delivery/delivery.pem --server-url https://chef-server.test/organizations/brewinc --fqdn automate-server.test --no-configure
+automate-ctl reconfigure
+sleep 15
+automate-ctl create-enterprise brewinc --ssh-pub-key-file /etc/delivery/builder_key.pub
+automate-ctl reset-password brewinc admin insecurepassword
 #ssh-keygen -t rsa -N '' -b 2048 -f /etc/delivery/builder_key
 #echo "data_collector['token'] = '93a49a4f2482c64126f7b6015e6b0f30284287ee4054ff8807fb63d9cbd1c506'" | tee -a /etc/delivery/delivery.rb
-#delivery-ctl reconfigure
 
 EOF
 
