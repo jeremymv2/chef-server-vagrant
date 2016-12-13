@@ -20,3 +20,6 @@ Test chef-server via vagrant / virtualbox
  * vagrant up chef-server # bring up chef-server first
  * vagrant up chef-client-node
  * vagrant up ..
+ * vagrant ssh ..
+ * vagrant halt .. # this will allow hosts to come back up quickly
+ * vagrant destroy .. # if needed
